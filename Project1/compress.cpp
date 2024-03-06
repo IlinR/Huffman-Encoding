@@ -6,9 +6,9 @@
 //#include <unordered_map>
 using namespace std;
 
-void encode() {
-	const char* FName = "example.txt";
-
+void encode(std::string FName ) {
+	//const char* FName = "example.txt";
+	
 	int header[256] = { 0 };
 	ifstream in(FName, ios::binary);
 	in.seekg(0, in.end);
@@ -27,7 +27,7 @@ void encode() {
 	unordered_map<char, string> huffmanCode;
 	TreeToMap(root, "", huffmanCode);
 
-	ofstream out("example_compress.txt", ios::binary);
+	ofstream out(FName + "_compress.txt", ios::binary);
 
 	out.write(reinterpret_cast<char*>(header), 256 * sizeof(int));
 
@@ -53,10 +53,10 @@ void encode() {
 	}
 };
 
-void decode() {
+void decode(std::string FName ) {
 
-	const char* FName = "example_compress.txt";
-
+	;
+	//std::string FName = "example_compress.txt";
 	int header[256] = {};
 	char leftoff = 0;
 	ifstream in(FName, ios::binary);
@@ -76,7 +76,7 @@ void decode() {
 	unordered_map<char, string> huffmanCode;
 	TreeToMap(root, "", huffmanCode);
 
-	ofstream out("example_decompress.txt", ios::binary);
+	ofstream out(FName + "_decompress.txt", ios::binary);
 	Node* tr = root;
 	int size = 0;
 	char counter = 7;

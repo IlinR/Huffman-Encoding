@@ -2,8 +2,8 @@
 using namespace std;
 
 int main() {
-	encode();
-	decode();
+	encode("example.txt");
+	decode("example_compress.txt");
 	return 0;
 };
 
